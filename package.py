@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
-name = 'bat'
+
+name = "bat"
 
 # Vendor packages: <vendor_version>+local.<our_version>
-__version__ = '0.15.1'
-version = __version__ + '+local.1.0.0'
+__version__ = "0.15.1"
+version = __version__ + "+local.1.0.0"
 
-description = 'The Python IDE for Professional Developers'
+description = "Vim-fork focused on extensibility and usability."
 
-authors = ['sharkdp', 'Joseph Yu']
+authors = ["sharkdp", "Joseph Yu"]
 
-variants = [['platform-linux', 'arch-x86_64']]
+variants = [
+    ["platform-linux", "arch-x86_64"],
+    # ["platform-macos", "arch-x86_64"],
+    # ["platform-windows", "arch-x86"],
+    # ["platform-windows", "arch-x86_64"],
+]
 
-tools = ['bat']
+tools = ["bat"]
 # @late()
 # def tools():
 #     import os
@@ -23,8 +29,7 @@ tools = ['bat']
 #             executables.append(item)
 #     return executables
 
-
-build_command = r'''
+build_command = r"""
 set -euf -o pipefail
 
 # Setup: curl "{CURL_FLAGS}" ...
@@ -43,10 +48,11 @@ then
     curl "{CURL_FLAGS}" "$URL" \
     | tar --strip-components=1 -xz -C "$REZ_BUILD_INSTALL_PATH"
 fi
-
-'''.format(version=__version__, CURL_FLAGS='${{CURL_FLAGS[@]}}')
+""".format(
+    version=__version__, CURL_FLAGS="${{CURL_FLAGS[@]}}"
+)
 
 
 def commands():
     """Commands to set up environment for ``rez env bat``"""
-    env.PATH.append('{root}')
+    env.PATH.append("{root}")
