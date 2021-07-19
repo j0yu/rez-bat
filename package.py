@@ -3,7 +3,7 @@
 name = "bat"
 
 # Vendor packages: <vendor_version>+local.<our_version>
-__version__ = "0.15.1"
+__version__ = "0.18.2"
 version = __version__ + "+local.1.0.0"
 
 description = "Vim-fork focused on extensibility and usability."
@@ -28,6 +28,8 @@ tools = ["bat"]
 #         if os.access(path, os.X_OK) and not os.path.isdir(path):
 #             executables.append(item)
 #     return executables
+
+relocatable = True
 
 build_command = r"""
 set -euf -o pipefail
